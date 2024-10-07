@@ -15,6 +15,9 @@ RUN apt-get update && apt-get install -y \
     nodejs \
     npm
 
+# Install Yarn
+RUN npm install -g yarn
+
 # Install Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
@@ -24,13 +27,14 @@ RUN sh -c "$(curl -sSfL https://release.solana.com/v1.17.0/install)"
 ENV PATH="/root/.local/share/solana/install/active_release/bin:${PATH}"
 
 # Install Anchor CLI
-RUN npm i -g @coral-xyz/anchor-cli@latest
+RUN yarn global add @coral-xyz/anchor-cli@latest
 
 # Verify installations
 RUN rustc --version && \
     cargo --version && \
     solana --version && \
-    anchor --version
+    anchor --version && \
+    yarn --version
 
 # Clean up
 RUN apt-get autoremove -y \

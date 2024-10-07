@@ -14,7 +14,7 @@
         }
     },
     "remoteUser": "root",
-    "postCreateCommand": "rustc --version && solana --version && anchor --version",
+    "postCreateCommand": "rustc --version && solana --version && anchor --version && yarn --version",
     "settings": {
         "terminal.integrated.shell.linux": "/bin/bash"
     }
