@@ -1,0 +1,21 @@
+{
+  "name": "SolanaAnchor",
+  "build": {
+      "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+      "vscode": {
+          "extensions": [
+              "rust-lang.rust-analyzer",
+              "serayuzgur.crates",
+              "vadimcn.vscode-lldb",
+              "tamasfe.even-better-toml"
+          ]
+      }
+  },
+  "remoteUser": "root",
+  "postCreateCommand": "rustc --version && solana --version && anchor --version",
+  "settings": {
+      "terminal.integrated.shell.linux": "/bin/bash"
+  }
+}
