@@ -11,7 +11,9 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     pkg-config \
     libudev-dev \
-    git
+    git \
+    nodejs \
+    npm
 
 # Install Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -21,10 +23,14 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 RUN sh -c "$(curl -sSfL https://release.solana.com/v1.17.0/install)"
 ENV PATH="/root/.local/share/solana/install/active_release/bin:${PATH}"
 
-# Install Anchor
-RUN cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
-RUN avm install latest
-RUN avm use latest
+# Install Anchor CLI
+RUN npm i -g @coral-xyz/anchor-cli@latest
+
+# Verify installations
+RUN rustc --version && \
+    cargo --version && \
+    solana --version && \
+    anchor --version
 
 # Clean up
 RUN apt-get autoremove -y \
