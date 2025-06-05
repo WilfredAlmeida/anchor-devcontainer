@@ -23,7 +23,7 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 
 # Install Solana CLI
-RUN sh -c "$(curl -sSfL https://release.solana.com/v1.17.0/install)"
+RUN sh -c "$(curl -sSfL https://release.solana.com/v1.87.0/install)"
 ENV PATH="/root/.local/share/solana/install/active_release/bin:${PATH}"
 
 # Install Anchor CLI
